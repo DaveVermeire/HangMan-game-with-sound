@@ -1,22 +1,8 @@
 import vlc
 import string
 import time
-# First, we will ask for the name of the user. We will take the user input
-# using the input() method.
-# After execution, the input() method takes the input from the user and
-# returns a string.
-# Next, we will select a word and ask the user to start guessing the
-# characters in the word.
-# We will also define the maximum number of attempts the user can take.
-# Now, we will use a while loop to repeatedly ask the user to guess the
-# character until the attempts are exhausted.
-# Inside the while loop, if the user guesses the correct character.
-# We will include it in the response. Otherwise, we will notify the user that
-# they made a mistake.
-# If the user is able to guess all the characters of the word within the
-# maximum number of attempts, they win the game.
-# If the user exhausts all their attempts before guessing the entire word,
-# they lose.
+import os
+
 
 # This just has all the pictures of the hangmans stored in a list
 HANGMANPICS: list = ['''
@@ -133,9 +119,9 @@ while True:
         word_guess = word_guess.strip(" ")
         print(HANGMANPICS[count])
         print("that's in the word :) ")
-        correct_sfx = vlc.MediaPlayer("C:\Personal Code\hangman\Video Game Coin Beep Sound Effect.mp3")
+        correct_sfx = vlc.MediaPlayer(os.path.abspath(
+            "Video Game Coin Beep Sound Effect.mp3"))
         correct_sfx.play()
-        
 
         # replaces multiple characters at once that are the same
         if word_guess.count(answer) > 1:
@@ -154,7 +140,8 @@ while True:
         print(obscured_list_word_guess)
         if "." not in obscured_list_word_guess:
             print(f"{user_name} has won yippee :)")
-            children_yay = vlc.MediaPlayer("C:\Personal Code\hangman\FNAF_ Kids Cheering - Gaming Sound Effect (HD).mp3")
+            children_yay = vlc.MediaPlayer(os.path.abspath(
+                "FNAF_ Kids Cheering - Gaming Sound Effect (HD).mp3"))
             children_yay.play()
             time.sleep(4)
             break
@@ -167,7 +154,7 @@ while True:
             print("You have used all you chances you got executed")
 
             womp_womp = vlc.MediaPlayer(
-                "C:\Personal Code\hangman\womp_womp.mp3")
+                os.path.abspath("womp_womp.mp3"))
             womp_womp.play()
             time.sleep(5)
             break
@@ -176,6 +163,6 @@ while True:
         print(HANGMANPICS[count])
         print(obscured_list_word_guess)
         getting_closer = vlc.MediaPlayer(
-            "C:\Personal Code\hangman\Dawn of the first day -72 hours remain-.mp3")
+            os.path.abspath("Dawn of the first day -72 hours remain-.mp3"))
         getting_closer.play()
         count += 1
